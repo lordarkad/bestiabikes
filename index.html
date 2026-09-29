@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bestia Bikes — Velocidad · Marca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lime:#E65A00; --carbon:#111827; --carbon2:#171f2e; --carbon3:#1e293b;
+    --lime-dim: rgba(230,90,0,0.13);
+    --white:#ffffff; --gray:#8b95a7; --gray2:#4b5563;
+    --lime-text:#ffffff;
+    --carbon-rgb: 17,24,39;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;overflow-x:hidden;}
+  body{font-family:'Inter',system-ui,sans-serif;font-weight:400;background:var(--carbon);color:var(--white);-webkit-font-smoothing:antialiased;}
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
+  button{font:inherit;border:none;background:none;cursor:pointer;}
+  table{border-collapse:collapse;}
+
+  .accent-stripe{height:3px;background:linear-gradient(90deg, var(--lime) 0%, #a8cc00 50%, transparent 100%);}
+
+  /* Header */
+  header.site{position:sticky;top:0;z-index:100;background:rgba(var(--carbon-rgb),0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,255,0,0.08);}
+  .header-inner{max-width:1400px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand-mark{width:32px;height:32px;background:var(--lime);clip-path:polygon(0 0, 100% 0, 80% 100%, 0 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .brand-mark span{color:var(--lime-text);font-size:13px;font-weight:900;font-family:'Barlow Condensed',sans-serif;letter-spacing:-0.02em;}
+  .brand-text{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;letter-spacing:0.08em;display:flex;gap:6px;}
+  .brand-text .w{color:var(--white);}
+  .brand-text .l{color:var(--lime);}
+  .brand-divider{width:1px;height:20px;background:var(--gray2);margin-left:8px;}
+  .brand-loc{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.12em;color:var(--gray);}
+  nav.desktop-nav{display:flex;gap:32px;align-items:center;}
+  .nav-link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.1em;color:var(--gray);transition:color 0.15s;}
+  .nav-link:hover{color:var(--lime);}
+  .btn-wa-nav{background:var(--lime);color:var(--lime-text);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;letter-spacing:0.08em;padding:8px 20px;clip-path:polygon(0 0, 100% 0, 92% 100%, 0 100%);transition:opacity 0.15s;display:inline-block;}
+  .btn-wa-nav:hover{opacity:0.85;}
+
+  /* Hero */
+  .hero{position:relative;min-height:92vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+  .hero-left{position:relative;display:flex;flex-direction:column;justify-content:center;padding:80px 60px;z-index:2;max-width:760px;}
+  .ghost-00{position:absolute;top:50%;left:40px;transform:translateY(-50%);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(200px,28vw,380px);line-height:1;color:var(--lime-dim);user-select:none;pointer-events:none;letter-spacing:-0.04em;}
+  .hero-left-content{position:relative;}
+  .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
+  .hero-eyebrow .bar{width:28px;height:2px;background:var(--lime);}
+  .hero-eyebrow span{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.2em;color:var(--lime);}
+  .hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(72px,10vw,140px);line-height:0.88;letter-spacing:-0.02em;color:var(--white);margin-bottom:28px;text-transform:uppercase;}
+  .hero-title em{color:var(--lime);font-style:italic;}
+  .hero-desc{font-family:'Inter',sans-serif;font-weight:400;font-size:16px;color:var(--gray);line-height:1.65;max-width:440px;margin-bottom:44px;}
+  .stat-strip{display:flex;gap:36px;margin-bottom:44px;}
+  .stat-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:42px;color:var(--lime);line-height:1;}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;color:var(--gray);margin-top:2px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn-ver-modelos{background:var(--lime);color:var(--lime-text);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;letter-spacing:0.08em;padding:14px 32px;clip-path:polygon(0 0, 100% 0, 94% 100%, 0 100%);transition:opacity 0.15s;display:inline-block;}
+  .btn-ver-modelos:hover{opacity:0.88;}
+  .btn-consultar{border:1px solid rgba(212,255,0,0.3);color:var(--lime);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:0.08em;padding:14px 28px;transition:border-color 0.15s, background 0.15s;display:inline-block;}
+  .btn-consultar:hover{background:var(--lime-dim);border-color:var(--lime);}
+
+  .hero-right{position:relative;overflow:hidden;}
+  .hero-right-clip{position:absolute;inset:0;clip-path:polygon(12% 0, 100% 0, 100% 100%, 0 100%);}
+  .hero-right-clip img{width:100%;height:100%;object-fit:cover;object-position:center;}
+  .hero-right-fade{position:absolute;inset:0;background:linear-gradient(105deg, rgba(var(--carbon-rgb),0.85) 0%, rgba(var(--carbon-rgb),0.2) 60%, rgba(var(--carbon-rgb),0.1) 100%);}
+  .hero-corner{position:absolute;bottom:40px;right:40px;z-index:2;}
+  .hero-corner .bar{width:80px;height:3px;background:var(--lime);margin-bottom:8px;}
+  .hero-corner p{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.2em;color:var(--lime);}
+
+  /* Tabs */
+  .tabs-wrap{background:var(--carbon2);border-top:1px solid rgba(212,255,0,0.08);border-bottom:1px solid rgba(212,255,0,0.08);position:sticky;top:64px;z-index:50;}
+  .tabs-inner{max-width:1400px;margin:0 auto;padding:0 32px;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+  .tab-btn{padding:18px 32px;border-bottom:3px solid transparent;display:flex;align-items:center;gap:12px;transition:border-color 0.2s;white-space:nowrap;flex-shrink:0;}
+  .tab-btn.active{border-bottom-color:var(--lime);}
+  .tab-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--gray2);}
+  .tab-btn.active .tab-num{color:var(--lime);}
+  .tab-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.08em;color:var(--gray);text-align:left;}
+  .tab-btn.active .tab-name{color:var(--white);}
+
+  /* Race band sections */
+  .race-section{background:var(--carbon);}
+  .race-band{border-bottom:1px solid rgba(212,255,0,0.06);opacity:0.38;transition:opacity 0.35s ease;cursor:pointer;}
+  .race-band.active{opacity:1;}
+  .race-band-inner{max-width:1400px;margin:0 auto;padding:0 32px;display:grid;min-height:520px;}
+  .race-band-inner.left{grid-template-columns:560px 1fr;}
+  .race-band-inner.right{grid-template-columns:1fr 560px;}
+  .race-text{display:flex;flex-direction:column;justify-content:center;padding:60px 0;position:relative;overflow:hidden;}
+  .race-text.order-1{order:1;}
+  .race-text.order-0{order:0;}
+  .ghost-num{position:absolute;top:50%;transform:translateY(-50%);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:280px;line-height:1;color:var(--lime-dim);user-select:none;pointer-events:none;letter-spacing:-0.04em;}
+  .ghost-num.left{left:-20px;}
+  .ghost-num.right{right:-20px;}
+  .race-text-inner{position:relative;}
+  .race-text-inner.pad-right{padding-right:60px;}
+  .race-text-inner.pad-left{padding-left:60px;}
+  .race-badge-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+  .race-badge{background:var(--gray2);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;padding:3px 10px;transition:background 0.3s, color 0.3s;}
+  .race-band.active .race-badge{background:var(--lime);color:var(--carbon);}
+  .race-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.15em;color:var(--gray);margin-bottom:8px;}
+  .race-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(52px,7vw,88px);line-height:0.9;letter-spacing:-0.02em;color:var(--white);text-transform:uppercase;white-space:pre-line;margin-bottom:36px;}
+  .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;margin-bottom:36px;}
+  .spec-cell{border-left:2px solid var(--gray2);padding-left:10px;transition:border-color 0.3s;}
+  .race-band.active .spec-cell{border-left-color:var(--lime);}
+  .spec-cell-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.15em;color:var(--gray2);margin-bottom:2px;transition:color 0.3s;}
+  .race-band.active .spec-cell-label{color:var(--lime);}
+  .spec-cell-val{font-family:'Inter',sans-serif;font-weight:400;font-size:13px;color:var(--gray);}
+  .race-price-row{display:flex;align-items:baseline;gap:16px;margin-bottom:28px;}
+  .race-price-row .label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.15em;color:var(--gray);}
+  .race-price-row .val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:52px;color:var(--lime);line-height:1;letter-spacing:-0.02em;}
+  .btn-race-wa{background:transparent;color:var(--gray);border:1px solid var(--gray2);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:0.08em;padding:12px 28px;clip-path:polygon(0 0, 100% 0, 94% 100%, 0 100%);display:inline-block;transition:all 0.25s;}
+  .race-band.active .btn-race-wa{background:var(--lime);color:var(--carbon);border-color:var(--lime);}
+
+  .race-image{position:relative;overflow:hidden;}
+  .race-image.order-1{order:1;}
+  .race-image.order-0{order:0;}
+  .race-image img{width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(60%) brightness(0.6);transition:filter 0.5s ease;}
+  .race-band.active .race-image img{filter:grayscale(0%) brightness(1);}
+  .race-image-fade{position:absolute;inset:0;}
+  .race-image-fade.right{background:linear-gradient(90deg, rgba(var(--carbon-rgb),0) 50%, rgba(var(--carbon-rgb),0.7) 100%);}
+  .race-image-fade.left{background:linear-gradient(270deg, rgba(var(--carbon-rgb),0) 50%, rgba(var(--carbon-rgb),0.7) 100%);}
+  .race-watermark{position:absolute;top:24px;background:var(--lime);color:var(--lime-text);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:0.1em;padding:6px 14px;display:none;}
+  .race-band.active .race-watermark{display:block;}
+  .race-watermark.right{left:24px;}
+  .race-watermark.left{right:24px;}
+
+  /* Compare table */
+  .compare-section{background:var(--carbon2);padding:80px 32px;border-top:1px solid rgba(212,255,0,0.08);}
+  .compare-inner{max-width:1400px;margin:0 auto;}
+  .compare-heading{display:flex;align-items:flex-end;gap:16px;margin-bottom:48px;}
+  .compare-heading h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(40px,6vw,72px);line-height:1;letter-spacing:-0.02em;color:var(--white);}
+  .compare-heading .line{height:3px;flex:1;background:linear-gradient(90deg, var(--lime), transparent);margin-bottom:12px;}
+  .compare-table-wrap{overflow-x:auto;}
+  table.compare{width:100%;min-width:600px;}
+  table.compare thead tr{border-bottom:2px solid var(--lime);}
+  table.compare th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;color:var(--gray);padding:12px 0;text-align:left;}
+  table.compare th.model{font-weight:900;font-size:18px;letter-spacing:0.05em;color:var(--white);padding:12px 16px;white-space:nowrap;}
+  table.compare th.model span{color:var(--lime);margin-right:8px;}
+  table.compare tbody tr{border-bottom:1px solid rgba(255,255,255,0.05);}
+  table.compare td{padding:14px 0;}
+  table.compare td.row-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.15em;color:var(--gray2);}
+  table.compare td.val{font-family:'Inter',sans-serif;font-weight:400;font-size:14px;color:var(--gray);padding:14px 16px;}
+  table.compare td.val.highlight{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;color:var(--lime);letter-spacing:-0.01em;}
+
+  /* CTA band */
+  .cta-band{background:var(--lime);padding:56px 32px;}
+  .cta-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .cta-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:0.2em;color:rgba(255,255,255,0.55);margin-bottom:12px;}
+  .cta-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(40px,5vw,64px);line-height:0.92;letter-spacing:-0.02em;color:var(--lime-text);}
+  .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .cta-item{border-left:2px solid rgba(255,255,255,0.25);padding-left:14px;}
+  .cta-item p.title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--lime-text);margin-bottom:4px;}
+  .cta-item p.desc{font-family:'Inter',sans-serif;font-weight:400;font-size:13px;color:rgba(255,255,255,0.7);line-height:1.5;}
+
+  /* Footer */
+  footer.site{background:var(--carbon);border-top:1px solid var(--lime-dim);padding:40px 32px 28px;}
+  .footer-inner{max-width:1400px;margin:0 auto;}
+  .footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:36px;}
+  .footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;letter-spacing:0.04em;margin-bottom:8px;}
+  .footer-brand .w{color:var(--white);}
+  .footer-brand .l{color:var(--lime);}
+  .footer-desc{font-family:'Inter',sans-serif;font-weight:400;font-size:14px;color:var(--gray);max-width:340px;line-height:1.55;}
+  .footer-contacts{display:flex;gap:48px;flex-wrap:wrap;}
+  .footer-contact-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;color:var(--gray2);margin-bottom:4px;}
+  .footer-contact-val{font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:var(--white);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  .footer-bottom span{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.1em;color:var(--gray2);}
+
+  .fab-whatsapp{position:fixed;bottom:28px;right:28px;z-index:200;background:var(--lime);color:var(--lime-text);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;letter-spacing:0.08em;padding:13px 22px;clip-path:polygon(0 0, 100% 0, 90% 100%, 0 100%);box-shadow:0 8px 32px var(--lime-dim);transition:opacity 0.2s;}
+  .fab-whatsapp:hover{opacity:0.88;}
+
+  @media (max-width: 900px){
+    .hero{grid-template-columns:1fr;}
+    .hero-right{min-height:340px;}
+    .race-band-inner.left, .race-band-inner.right{grid-template-columns:1fr;min-height:auto;}
+    .race-text.order-1, .race-image.order-1{order:1;}
+    .race-image{min-height:280px;}
+    .cta-inner{grid-template-columns:1fr;}
+    nav.desktop-nav{gap:14px;}
+    .nav-link{display:none;}
+  }
+
+  @media (max-width: 520px){
+    .tabs-inner{padding:0 16px;gap:4px;}
+    .tab-btn{padding:14px 14px;gap:8px;}
+    .tab-num{font-size:16px;}
+    .tab-name{font-size:11px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="accent-stripe"></div>
+
+<header class="site">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark"><span>B</span></div>
+      <div class="brand-text"><span class="w">BESTIA</span><span class="l">BIKES</span></div>
+      <div class="brand-divider"></div>
+      <span class="brand-loc">ROSARIO · ARG</span>
+    </div>
+    <nav class="desktop-nav">
+      <a class="nav-link" href="#modelos">MODELOS</a>
+      <a class="nav-link" href="#modelos">SPECS</a>
+      <a class="nav-link" href="#modelos">CONTACTO</a>
+      <a class="btn-wa-nav" href="https://wa.me/5493412768090" target="_blank" rel="noopener noreferrer">WHATSAPP &rarr;</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="ghost-00">00</div>
+    <div class="hero-left-content">
+      <div class="hero-eyebrow"><div class="bar"></div><span>LANZAMIENTO 2026</span></div>
+      <h1 class="hero-title">BICICLETAS<br><em>SIN LÍMITES.</em></h1>
+      <p class="hero-desc">Tres modelos Prolimit diseñados para dominar. Acero, aluminio y full stunt — cada uno calibrado para exigirte más.</p>
+      <div class="stat-strip">
+        <div><div class="stat-val">3</div><div class="stat-label">MODELOS</div></div>
+        <div><div class="stat-val">21</div><div class="stat-label">VELOCIDADES</div></div>
+        <div><div class="stat-val">4</div><div class="stat-label">COLORES</div></div>
+      </div>
+      <div class="hero-actions">
+        <a class="btn-ver-modelos" href="#modelos">VER MODELOS &rarr;</a>
+        <a class="btn-consultar" href="https://wa.me/5493412768090" target="_blank" rel="noopener noreferrer">CONSULTAR</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-clip">
+      <img src="https://images.unsplash.com/photo-1621122940876-2b3be129159c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=900" alt="Ciclista en acción">
+      <div class="hero-right-fade"></div>
+    </div>
+    <div class="hero-corner">
+      <div class="bar"></div>
+      <p>PROLIMIT · ARG</p>
+    </div>
+  </div>
+</section>
+
+<div class="tabs-wrap" id="modelos">
+  <div class="tabs-inner" id="tabs-inner"></div>
+</div>
+
+<section class="race-section" id="race-section"></section>
+
+<section class="compare-section">
+  <div class="compare-inner">
+    <div class="compare-heading">
+      <h2>COMPARAR MODELOS</h2>
+      <div class="line"></div>
+    </div>
+    <div class="compare-table-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>ESPECIFICACIÓN</th>
+            <th class="model"><span>01</span>PROLIMIT IRON 1</th>
+            <th class="model"><span>02</span>PROLIMIT FORCE 0</th>
+            <th class="model"><span>03</span>PROLIMIT DRIFT STUNT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">CUADRO</td>
+            <td class="val">Acero al carbón</td>
+            <td class="val">Aluminio liviano</td>
+            <td class="val">Aluminio Drift Stunt</td>
+          </tr>
+          <tr>
+            <td class="row-label">HORQUILLA</td>
+            <td class="val">Suspensión Prolimit</td>
+            <td class="val">Suspensión Prolimit Pro</td>
+            <td class="val">Rígida performance</td>
+          </tr>
+          <tr>
+            <td class="row-label">TRANSMISIÓN</td>
+            <td class="val">21 vel · TZ</td>
+            <td class="val">21 vel · Shimano</td>
+            <td class="val">1×8 vel · Ltwoo A5</td>
+          </tr>
+          <tr>
+            <td class="row-label">FRENOS</td>
+            <td class="val">Disco mecánico</td>
+            <td class="val">Disco mecánico</td>
+            <td class="val">Hidráulicos Xspark</td>
+          </tr>
+          <tr>
+            <td class="row-label">PRECIO</td>
+            <td class="val highlight">$265.000</td>
+            <td class="val highlight">$355.000</td>
+            <td class="val highlight">$615.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-inner">
+    <div>
+      <p class="cta-eyebrow">¿POR QUÉ BESTIA BIKES?</p>
+      <h2 class="cta-title">COMPONENTES DE ÉLITE.<br>PRECIOS DIRECTOS.</h2>
+    </div>
+    <div class="cta-grid">
+      <div class="cta-item"><p class="title">&rarr; Sin intermediarios</p><p class="desc">Comprás directo al distribuidor. Nada de márgenes de reventa.</p></div>
+      <div class="cta-item"><p class="title">&rarr; Atención por WhatsApp</p><p class="desc">Rosario, Santa Fe. Coordinamos entrega o retiro en el acto.</p></div>
+      <div class="cta-item"><p class="title">&rarr; Stock real</p><p class="desc">Confirmamos talle y color antes de que pagues un peso.</p></div>
+      <div class="cta-item"><p class="title">&rarr; Financiación</p><p class="desc">Consultas medios de pago disponibles al momento del pedido.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><span class="w">BESTIA </span><span class="l">BIKES</span></div>
+        <p class="footer-desc">Bicicletas Prolimit y Sunpeed en Rosario. Potencia, durabilidad y comunidad ciclista local.</p>
+      </div>
+      <div class="footer-contacts">
+        <div><p class="footer-contact-label">WHATSAPP</p><p class="footer-contact-val">+54 9 341 276-8090</p></div>
+        <div><p class="footer-contact-label">EMAIL</p><p class="footer-contact-val">contacto@bestiabikes.com.ar</p></div>
+        <div><p class="footer-contact-label">INSTAGRAM</p><p class="footer-contact-val">@bestiabikesrosario</p></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 BESTIA BIKES ROSARIO</span>
+      <span>PRECIOS SUJETOS A STOCK</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab-whatsapp" href="https://wa.me/5493412768090" target="_blank" rel="noopener noreferrer">WHATSAPP &rarr;</a>
+
+<script>
+  const raceData = [
+    {
+      num: '01', tag: 'MTB · RODADO 29 · ACERO', name: 'PROLIMIT\nIRON 1', price: '265.000',
+      img: 'assets/prolimit-iron.jpg',
+      specs: [
+        { label: 'CUADRO', val: 'Acero liviano al carbón' },
+        { label: 'HORQUILLA', val: 'Suspensión Prolimit' },
+        { label: 'TRANSMISIÓN', val: '21 vel — cambio TZ' },
+        { label: 'FRENOS', val: 'Disco mecánico' },
+        { label: 'RODADO', val: '29" — Sunpeed 29×2.2' },
+      ],
+      badge: 'ENTRY PERFORMANCE',
+    },
+    {
+      num: '02', tag: 'MTB · RODADO 29 · ALUMINIO', name: 'PROLIMIT\nFORCE 0', price: '355.000',
+      img: 'assets/prolimit-force.jpg',
+      specs: [
+        { label: 'CUADRO', val: 'Aluminio Force liviano' },
+        { label: 'HORQUILLA', val: 'Suspensión Prolimit Pro' },
+        { label: 'TRANSMISIÓN', val: '21 vel — Shimano' },
+        { label: 'FRENOS', val: 'Disco mecánico' },
+        { label: 'RODADO', val: '29" — mazas reforzadas' },
+      ],
+      badge: 'MID ENDURO',
+    },
+    {
+      num: '03', tag: 'STUNT · RODADO 26 · ALUMINIO', name: 'PROLIMIT\nDRIFT STUNT', price: '615.000',
+      img: 'assets/prolimit-drift-stunt.jpg',
+      specs: [
+        { label: 'CUADRO', val: 'Aluminio Drift Stunt R26' },
+        { label: 'TRANSMISIÓN', val: 'Ltwoo A5 · 1×8 vel' },
+        { label: 'FRENOS', val: 'Hidráulicos Xspark' },
+        { label: 'COMPONENTES', val: 'Anodizados completos' },
+        { label: 'COLORES', val: '4 opciones a elección' },
+      ],
+      badge: 'FULL STUNT',
+    },
+  ];
+
+  let activeTab = 0;
+  const tabsInner = document.getElementById('tabs-inner');
+  const raceSection = document.getElementById('race-section');
+
+  function renderTabs() {
+    tabsInner.innerHTML = raceData.map((b, i) => `
+      <button class="tab-btn${activeTab === i ? ' active' : ''}" data-i="${i}">
+        <span class="tab-num">${b.num}</span>
+        <span class="tab-name">${b.name.replace('\n', ' ')}</span>
+      </button>
+    `).join('');
+    [...tabsInner.querySelectorAll('.tab-btn')].forEach(btn => {
+      btn.addEventListener('click', () => { activeTab = parseInt(btn.dataset.i, 10); renderAll(); scrollToActiveBand(); });
+    });
+  }
+
+  function scrollToActiveBand() {
+    const band = raceSection.querySelector(`.race-band[data-i="${activeTab}"]`);
+    if (!band) return;
+    const header = document.querySelector('header.site');
+    const tabsWrap = document.querySelector('.tabs-wrap');
+    const offset = (header ? header.offsetHeight : 0) + (tabsWrap ? tabsWrap.offsetHeight : 0);
+    const top = band.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  function renderRace() {
+    raceSection.innerHTML = raceData.map((bike, i) => {
+      const isActive = activeTab === i;
+      const isRight = i % 2 === 1;
+      const nameFlat = bike.name.replace('\n', ' ');
+      const waMsg = encodeURIComponent(`Hola! Me interesa la ${nameFlat}`);
+      return `
+        <div class="race-band${isActive ? ' active' : ''}" data-i="${i}">
+          <div class="race-band-inner ${isRight ? 'right' : 'left'}">
+            <div class="race-text order-${isRight ? 1 : 0}">
+              <div class="ghost-num ${isRight ? 'right' : 'left'}">${bike.num}</div>
+              <div class="race-text-inner ${isRight ? 'pad-left' : 'pad-right'}">
+                <div class="race-badge-row"><span class="race-badge">${bike.badge}</span></div>
+                <p class="race-tag">${bike.tag}</p>
+                <h2 class="race-title">${bike.name}</h2>
+                <div class="spec-grid">
+                  ${bike.specs.map(s => `<div class="spec-cell"><div class="spec-cell-label">${s.label}</div><div class="spec-cell-val">${s.val}</div></div>`).join('')}
+                </div>
+                <div class="race-price-row"><span class="label">LANZAMIENTO</span><span class="val">$${bike.price}</span></div>
+                <a class="btn-race-wa" href="https://wa.me/5493412768090?text=${waMsg}" target="_blank" rel="noopener noreferrer">CONSULTAR POR WHATSAPP &rarr;</a>
+              </div>
+            </div>
+            <div class="race-image order-${isRight ? 0 : 1}">
+              <img src="${bike.img}" alt="${nameFlat}">
+              <div class="race-image-fade ${isRight ? 'right' : 'left'}"></div>
+              <div class="race-watermark ${isRight ? 'right' : 'left'}">OFERTA LANZAMIENTO</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    [...raceSection.querySelectorAll('.race-band')].forEach(band => {
+      band.addEventListener('click', () => { activeTab = parseInt(band.dataset.i, 10); renderAll(); });
+    });
+  }
+
+  function renderAll() { renderTabs(); renderRace(); }
+  renderAll();
+</script>
+</body>
+</html>
