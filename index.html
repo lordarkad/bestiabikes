@@ -189,6 +189,14 @@
     .tab-name{font-size:11px;}
   }
 </style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DSJRZJPXVW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DSJRZJPXVW');
+</script>
 </head>
 <body>
 
@@ -441,6 +449,28 @@
 
   function renderAll() { renderTabs(); renderRace(); }
   renderAll();
+
+  // Eventos GA4 (delegados: los tabs y bandas se re-renderizan)
+  document.addEventListener('click', e => {
+    if (typeof gtag !== 'function') return;
+    const tab = e.target.closest('.tab-btn');
+    if (tab) {
+      gtag('event', 'select_tab', { bike_name: raceData[tab.dataset.i].name.replace('\n', ' ') });
+      return;
+    }
+    const wa = e.target.closest('a[href^="https://wa.me/"]');
+    if (wa) {
+      const band = wa.closest('.race-band');
+      gtag('event', 'whatsapp_click', {
+        link_location: wa.className,
+        bike_name: band ? raceData[band.dataset.i].name.replace('\n', ' ') : undefined,
+      });
+      return;
+    }
+    if (e.target.closest('a[href^="#modelos"]')) {
+      gtag('event', 'nav_click', { link_text: e.target.closest('a').textContent.trim() });
+    }
+  });
 </script>
 </body>
 </html>
